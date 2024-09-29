@@ -13,10 +13,11 @@
     <div class="search-section"></div>
     <form action="/get-weather" method="POST">
       <div class="input-wrapper">
-        <input type="search" name="city" placeholder="Enter a city name" class="search-input" required>
+        <input type="search" name="city" placeholder="Enter a city name" class="search-input" autocomplete="off" required>
       </div>
       <button class="search-button" type="submit">Search</button>
     </form>
+    
 
     <!-- Error message display -->
     <% if (error) { %>
