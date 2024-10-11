@@ -20,6 +20,7 @@ const db = new Client({
   password: process.env.PG_PASSWORD,
   port: process.env.PG_PORT,
   ssl: false,
+  connectionString: process.env.POSTGRES_URL,
 });
 
 // Connect to the PostgreSQL database
