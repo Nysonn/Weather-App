@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 
 dotenv.config();
 
-const port = 3000;
+// const port = 3000;
 const app = express();
 
 const db = new pg.Client({
@@ -132,6 +132,8 @@ app.post("/get-weather", async (req, res) => {
 });
 
 // START THE SERVER
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
