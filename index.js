@@ -10,16 +10,28 @@ dotenv.config();
 // const port = 3000;
 const app = express();
 
-const db = new pg.Client({
+// Use individual connection parameters
+const db = new Client({
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
   database: process.env.PG_DATABASE,
   password: process.env.PG_PASSWORD,
   port: process.env.PG_PORT,
+  ssl: {
+    rejectUnauthorized: false,
+  }
 });
 
+module.exports = db;
+
 // Connect to the PostgreSQL database
-db.connect();
+db.connect((err) => {
+  if (err) {
+    console.error('Failed to connect to the database:', err.stack);
+  } else {
+    console.log('Connected to the PostgreSQL database');
+  }
+});
 
 // Set EJS as the view engine
 app.set("view engine", "ejs");
