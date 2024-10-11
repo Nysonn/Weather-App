@@ -4,13 +4,14 @@ import axios from "axios";
 import dotenv from "dotenv";
 import pg from "pg";
 import bcrypt from "bcrypt";
+import { Client } from "pg";
 
 dotenv.config();
 
 // const port = 3000;
 const app = express();
 
-// Use individual connection parameters
+// Database connection setup
 const db = new Client({
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
@@ -21,8 +22,6 @@ const db = new Client({
     rejectUnauthorized: false,
   }
 });
-
-module.exports = db;
 
 // Connect to the PostgreSQL database
 db.connect((err) => {
