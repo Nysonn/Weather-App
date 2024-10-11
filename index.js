@@ -5,11 +5,13 @@ import dotenv from "dotenv";
 import pg from "pg";
 import bcrypt from "bcrypt";
 import { Client } from "pg";
+import pkg from "pg";
 
 dotenv.config();
 
 // const port = 3000;
 const app = express();
+const { Client } = pkg;
 
 // Database connection setup
 const db = new Client({
