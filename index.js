@@ -33,7 +33,7 @@ app.get("/register", (req, res) => {
 
 // Registration route (POST)
 app.post("/register", async (req, res) => {
-  const { username, email, password } = req.body; // Ensure email is included
+  const { username, email, password } = req.body; 
 
   try {
     // Check if the user already exists
