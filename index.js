@@ -2,16 +2,15 @@ import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
 import dotenv from "dotenv";
-import pg from "pg";
 import bcrypt from "bcrypt";
-import { Client } from "pg";
-import pkg from "pg";
+import pkg from "pg"; // Import pg package
 
 dotenv.config();
 
-// const port = 3000;
-const app = express();
+// Destructure Client from pg package
 const { Client } = pkg;
+
+const app = express();
 
 // Database connection setup
 const db = new Client({
@@ -22,7 +21,7 @@ const db = new Client({
   port: process.env.PG_PORT,
   ssl: {
     rejectUnauthorized: false,
-  }
+  },
 });
 
 // Connect to the PostgreSQL database
@@ -46,7 +45,7 @@ app.get("/register", (req, res) => {
 
 // Registration route (POST)
 app.post("/register", async (req, res) => {
-  const { username, email, password } = req.body; 
+  const { username, email, password } = req.body;
 
   try {
     // Check if the user already exists
@@ -119,7 +118,7 @@ app.post("/get-weather", async (req, res) => {
 
   try {
     const geoResponse = await axios.get(geocodeUrl);
-    
+
     // Ensure city is found before proceeding
     if (geoResponse.data.length === 0) {
       res.render("dashboard", { weather: null, error: "City not found" });
@@ -131,7 +130,7 @@ app.post("/get-weather", async (req, res) => {
     // Fetch weather data using coordinates
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
     const weatherResponse = await axios.get(weatherUrl);
-    
+
     // Log the received weather data
     console.log("Weather data received:", weatherResponse.data);
 
